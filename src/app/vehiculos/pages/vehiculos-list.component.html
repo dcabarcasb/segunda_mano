@@ -17,14 +17,13 @@
     </tr>
   </tbody>
 </table>
+
 {{ getConteo() }}
 <table>
-  <tbody>
     <tr *ngFor="let item of countsByMarca | keyvalue">
       <td>Total {{ item.key }}:</td>
       <td>{{ item.value }}</td>
     </tr>
-  </tbody>
 </table>
   
 
