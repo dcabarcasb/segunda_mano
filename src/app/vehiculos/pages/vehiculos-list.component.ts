@@ -11,13 +11,23 @@ import { VehiculoService } from '../services/vehiculo.service';
 export class VehiculosComponent implements OnInit {
 
   vehiculos: Array<Vehiculo> = [];
+  countsByMarca: { [key: string]: number } = {};
   constructor( private vehiculoService: VehiculoService) { }
 
   getVehiculos(): void{
     this.vehiculoService.getVehiculos().subscribe((vehiculos) => { this.vehiculos = vehiculos}); 
   }
+
+  getConteo(): void{
+      this.countsByMarca = this.vehiculos.reduce((acc, item) => {
+      acc[item.marca] = (acc[item.marca] || 0) + 1;
+      return acc;
+    }, {} as { [key: string]: number });
+  }
+
+    
   ngOnInit() {
-    this.getVehiculos();
+    this.getVehiculos();  
   }
 
 }
